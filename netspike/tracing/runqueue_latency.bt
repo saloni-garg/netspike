@@ -1,0 +1,56 @@
+#!/usr/bin/env bpftrace
+/*
+ * runqueue_latency.bt -- how long tasks wait for a CPU, and how
+ * often they leave one involuntarily.
+ *
+ * Runqueue latency (the runqlat idea): when a task is woken it
+ * becomes runnable but does not run until a CPU picks it. The gap
+ * between sched:sched_wakeup (or sched_wakeup_new for a fresh
+ * task) and the sched:sched_switch that puts it on a CPU is pure
+ * queueing -- the task was ready and the machine made it wait.
+ * Under CPU saturation this histogram grows a long tail while the
+ * task's own on-CPU time does not, which is exactly the split
+ * /proc/<pid>/schedstat reports per process (wait vs runtime);
+ * this script shows it system wide, as a distribution.
+ *
+ * Off-CPU counter: when sched_switch switches a task out and its
+ * prev_state is not 0 (TASK_RUNNING), the task left the CPU
+ * blocked or preempted into a non-running state rather than
+ * finishing its slice still runnable. Counting those events per
+ * process is a cheap off-CPU signal: a process that is constantly
+ * switched out blocked is waiting on something, not computing.
+ *
+ * Run:  sudo bpftrace runqueue_latency.bt
+ * Stop with Ctrl-C; the histogram and counters print on exit.
+ *
+ * Requirements: Linux with the sched tracepoints, bpftrace, and
+ * root or CAP_BPF + CAP_PERFMON.
+ */
+
+BEGIN
+{
+    printf("measuring runqueue latency, Ctrl-C to stop\n");
+}
+
+tracepoint:sched:sched_wakeup,
+tracepoint:sched:sched_wakeup_new
+{
+    @qtime[args->pid] = nsecs;
+}
+
+tracepoint:sched:sched_switch
+{
+    if (@qtime[args->next_pid] > 0) {
+        $lat_us = (nsecs - @qtime[args->next_pid]) / 1000;
+        @runq_lat_us = hist($lat_us);
+        delete(@qtime[args->next_pid]);
+    }
+    if (args->prev_state != 0) {
+        @offcpu_events[args->prev_comm] = count();
+    }
+}
+
+END
+{
+    clear(@qtime);
+}

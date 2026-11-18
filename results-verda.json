@@ -1,0 +1,1165 @@
+{
+  "machine": {
+    "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "cpu_count": 4,
+    "affinity_cpus": 4
+  },
+  "mechanisms": {
+    "cgroup": "cgroup v2 cpu.max=20000 100000 in /sys/fs/cgroup/netspike-exp",
+    "delay": "tc qdisc add dev lo root netem delay 50ms 10ms",
+    "loss": "tc qdisc add dev lo root netem loss 15%",
+    "saturation": "busy processes on every core (inject.py)"
+  },
+  "phases": [
+    {
+      "name": "baseline",
+      "expected": "unknown",
+      "trials": 5,
+      "diagnoses_correct": 5,
+      "diagnoses": [
+        "unknown",
+        "unknown",
+        "unknown",
+        "unknown",
+        "unknown"
+      ],
+      "latency_median": {
+        "p50": 0.055447499988758864,
+        "p95": 0.12862635000487893,
+        "p99": 0.2286398699953904
+      },
+      "evidence_median": {
+        "tcp_retrans_delta": 0,
+        "cgroup_nr_throttled": 0,
+        "schedstat_wait_ratio": 0.001671766132373713
+      },
+      "per_trial": [
+        {
+          "latency": {
+            "count": 50,
+            "p50": 0.050145500040343904,
+            "p95": 0.07072860001073877,
+            "p99": 0.12724284000682917,
+            "mean": 0.05501537999748507,
+            "max": 0.15119599999025013,
+            "attempts": 50,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 0.0031113624572753906,
+            "cpu_util_ratio": 0.0,
+            "softirq_net_rx_delta": 356,
+            "ctxt_delta": 555,
+            "cpu_pressure_some_us": 73,
+            "io_pressure_some_us": 0,
+            "schedstat_wait_ms": 0.001973,
+            "schedstat_runtime_ms": 1.180189,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 0,
+            "tcp_outsegs_delta": 541,
+            "tcp_tw_delta": 91
+          },
+          "diagnosis": "unknown",
+          "reasons": [
+            "no rule fired: cpu, throttle, loss, io, and uniform-shift signals all below threshold"
+          ]
+        },
+        {
+          "latency": {
+            "count": 50,
+            "p50": 0.055447499988758864,
+            "p95": 0.12862635000487893,
+            "p99": 0.2712819399675932,
+            "mean": 0.06863068000143357,
+            "max": 0.38108799998326504,
+            "attempts": 50,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 0.0038535594940185547,
+            "cpu_util_ratio": 0.5,
+            "softirq_net_rx_delta": 305,
+            "ctxt_delta": 474,
+            "cpu_pressure_some_us": 483,
+            "io_pressure_some_us": 0,
+            "schedstat_wait_ms": 0.0,
+            "schedstat_runtime_ms": 1.148989,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 0,
+            "tcp_outsegs_delta": 501,
+            "tcp_tw_delta": 51
+          },
+          "diagnosis": "unknown",
+          "reasons": [
+            "no rule fired: cpu, throttle, loss, io, and uniform-shift signals all below threshold"
+          ]
+        },
+        {
+          "latency": {
+            "count": 50,
+            "p50": 0.0557035000099404,
+            "p95": 0.1286287500249727,
+            "p99": 0.2286398699953904,
+            "mean": 0.06842755999400651,
+            "max": 0.2906919999645652,
+            "attempts": 50,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 0.0038712024688720703,
+            "cpu_util_ratio": 0.0,
+            "softirq_net_rx_delta": 304,
+            "ctxt_delta": 471,
+            "cpu_pressure_some_us": 464,
+            "io_pressure_some_us": 0,
+            "schedstat_wait_ms": 0.002274,
+            "schedstat_runtime_ms": 1.206932,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 0,
+            "tcp_outsegs_delta": 501,
+            "tcp_tw_delta": 51
+          },
+          "diagnosis": "unknown",
+          "reasons": [
+            "no rule fired: cpu, throttle, loss, io, and uniform-shift signals all below threshold"
+          ]
+        },
+        {
+          "latency": {
+            "count": 50,
+            "p50": 0.05639400001200556,
+            "p95": 0.14029095000580577,
+            "p99": 0.2394961599799214,
+            "mean": 0.07129664000558478,
+            "max": 0.3074669999705293,
+            "attempts": 50,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 0.003974437713623047,
+            "cpu_util_ratio": 0.0,
+            "softirq_net_rx_delta": 306,
+            "ctxt_delta": 489,
+            "cpu_pressure_some_us": 485,
+            "io_pressure_some_us": 0,
+            "schedstat_wait_ms": 0.011818,
+            "schedstat_runtime_ms": 1.27953,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 0,
+            "tcp_outsegs_delta": 501,
+            "tcp_tw_delta": 51
+          },
+          "diagnosis": "unknown",
+          "reasons": [
+            "no rule fired: cpu, throttle, loss, io, and uniform-shift signals all below threshold"
+          ]
+        },
+        {
+          "latency": {
+            "count": 50,
+            "p50": 0.05386500001236527,
+            "p95": 0.11944110001707023,
+            "p99": 0.20466804997511184,
+            "mean": 0.06741817999568411,
+            "max": 0.21978699999181117,
+            "attempts": 50,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 0.003770112991333008,
+            "cpu_util_ratio": 0.5,
+            "softirq_net_rx_delta": 305,
+            "ctxt_delta": 476,
+            "cpu_pressure_some_us": 456,
+            "io_pressure_some_us": 0,
+            "schedstat_wait_ms": 0.0,
+            "schedstat_runtime_ms": 1.121165,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 0,
+            "tcp_outsegs_delta": 501,
+            "tcp_tw_delta": 51
+          },
+          "diagnosis": "unknown",
+          "reasons": [
+            "no rule fired: cpu, throttle, loss, io, and uniform-shift signals all below threshold"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cpu_saturation",
+      "expected": "cpu_saturation",
+      "trials": 5,
+      "diagnoses_correct": 5,
+      "diagnoses": [
+        "cpu_saturation",
+        "cpu_saturation",
+        "cpu_saturation",
+        "cpu_saturation",
+        "cpu_saturation"
+      ],
+      "latency_median": {
+        "p50": 0.054100999989259435,
+        "p95": 2.027896650005801,
+        "p99": 3.1187863900436272
+      },
+      "evidence_median": {
+        "cpu_pressure_some_us": 1239463,
+        "schedstat_wait_ms": 105.368108,
+        "schedstat_runtime_ms": 125.563098,
+        "schedstat_wait_ratio": 0.8188379557563358
+      },
+      "per_trial": [
+        {
+          "latency": {
+            "count": 4950,
+            "p50": 0.05415049997736787,
+            "p95": 2.027896650005801,
+            "p99": 3.92856896997729,
+            "mean": 0.5139955862628338,
+            "max": 6.9676129999720615,
+            "attempts": 4950,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 2.5473971366882324,
+            "cpu_util_ratio": 1.0,
+            "softirq_net_rx_delta": 30573,
+            "ctxt_delta": 58111,
+            "cpu_pressure_some_us": 1252716,
+            "io_pressure_some_us": 16512,
+            "schedstat_wait_ms": 89.436038,
+            "schedstat_runtime_ms": 106.403427,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 0,
+            "tcp_outsegs_delta": 50145,
+            "tcp_tw_delta": 5104
+          },
+          "diagnosis": "cpu_saturation",
+          "reasons": [
+            "baseline-relative saturation: cpu pressure stall 1252716 us in window (baseline 464 us), stall rate several times baseline",
+            "server runqueue wait 89 ms vs 106 ms on-CPU (ratio 0.84, baseline ratio 0.00)",
+            "p99 3.93 ms is 17.2x baseline 0.23 ms and p95 15.8x baseline, tail heavy, though the absolute p99 rise is only 3.70 ms"
+          ]
+        },
+        {
+          "latency": {
+            "count": 6600,
+            "p50": 0.05372900000111258,
+            "p95": 2.3262406000043145,
+            "p99": 3.1187863900436272,
+            "mean": 0.3846061224242555,
+            "max": 6.9830570000135594,
+            "attempts": 6600,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 2.5481884479522705,
+            "cpu_util_ratio": 1.0,
+            "softirq_net_rx_delta": 40505,
+            "ctxt_delta": 75601,
+            "cpu_pressure_some_us": 1239463,
+            "io_pressure_some_us": 0,
+            "schedstat_wait_ms": 107.31789,
+            "schedstat_runtime_ms": 131.061206,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 0,
+            "tcp_outsegs_delta": 66694,
+            "tcp_tw_delta": 4268
+          },
+          "diagnosis": "cpu_saturation",
+          "reasons": [
+            "baseline-relative saturation: cpu pressure stall 1239463 us in window (baseline 464 us), stall rate several times baseline",
+            "server runqueue wait 107 ms vs 131 ms on-CPU (ratio 0.82, baseline ratio 0.00)",
+            "p99 3.12 ms is 13.6x baseline 0.23 ms and p95 18.1x baseline, tail heavy, though the absolute p99 rise is only 2.89 ms"
+          ]
+        },
+        {
+          "latency": {
+            "count": 6300,
+            "p50": 0.054100999989259435,
+            "p95": 2.0148845000051097,
+            "p99": 3.029154929982953,
+            "mean": 0.39708268365098587,
+            "max": 6.02054300003374,
+            "attempts": 6300,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 2.5053186416625977,
+            "cpu_util_ratio": 1.0,
+            "softirq_net_rx_delta": 38927,
+            "ctxt_delta": 72717,
+            "cpu_pressure_some_us": 1226133,
+            "io_pressure_some_us": 0,
+            "schedstat_wait_ms": 112.211988,
+            "schedstat_runtime_ms": 125.563098,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 0,
+            "tcp_outsegs_delta": 63866,
+            "tcp_tw_delta": 2542
+          },
+          "diagnosis": "cpu_saturation",
+          "reasons": [
+            "baseline-relative saturation: cpu pressure stall 1226133 us in window (baseline 464 us), stall rate several times baseline",
+            "server runqueue wait 112 ms vs 126 ms on-CPU (ratio 0.89, baseline ratio 0.00)",
+            "p99 3.03 ms is 13.2x baseline 0.23 ms and p95 15.7x baseline, tail heavy, though the absolute p99 rise is only 2.80 ms"
+          ]
+        },
+        {
+          "latency": {
+            "count": 6850,
+            "p50": 0.05495199999927536,
+            "p95": 2.012249899982521,
+            "p99": 3.029686540039052,
+            "mean": 0.37701480379559454,
+            "max": 8.002148000002762,
+            "attempts": 6850,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 2.586735248565674,
+            "cpu_util_ratio": 1.0,
+            "softirq_net_rx_delta": 42078,
+            "ctxt_delta": 78476,
+            "cpu_pressure_some_us": 1262575,
+            "io_pressure_some_us": 0,
+            "schedstat_wait_ms": 105.368108,
+            "schedstat_runtime_ms": 142.145988,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 0,
+            "tcp_outsegs_delta": 69050,
+            "tcp_tw_delta": 1317
+          },
+          "diagnosis": "cpu_saturation",
+          "reasons": [
+            "baseline-relative saturation: cpu pressure stall 1262575 us in window (baseline 464 us), stall rate several times baseline",
+            "server runqueue wait 105 ms vs 142 ms on-CPU (ratio 0.74, baseline ratio 0.00)",
+            "p99 3.03 ms is 13.3x baseline 0.23 ms and p95 15.6x baseline, tail heavy, though the absolute p99 rise is only 2.80 ms"
+          ]
+        },
+        {
+          "latency": {
+            "count": 5400,
+            "p50": 0.05400199998462085,
+            "p95": 2.9876699499936876,
+            "p99": 3.5778870100085887,
+            "mean": 0.4631920725924382,
+            "max": 6.003406999980143,
+            "attempts": 5400,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 2.504566192626953,
+            "cpu_util_ratio": 1.0,
+            "softirq_net_rx_delta": 33298,
+            "ctxt_delta": 62537,
+            "cpu_pressure_some_us": 1226260,
+            "io_pressure_some_us": 0,
+            "schedstat_wait_ms": 85.953228,
+            "schedstat_runtime_ms": 110.181182,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 0,
+            "tcp_outsegs_delta": 54705,
+            "tcp_tw_delta": 765
+          },
+          "diagnosis": "cpu_saturation",
+          "reasons": [
+            "baseline-relative saturation: cpu pressure stall 1226260 us in window (baseline 464 us), stall rate several times baseline",
+            "server runqueue wait 86 ms vs 110 ms on-CPU (ratio 0.78, baseline ratio 0.00)",
+            "p99 3.58 ms is 15.6x baseline 0.23 ms and p95 23.2x baseline, tail heavy, though the absolute p99 rise is only 3.35 ms"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cpu_throttle",
+      "expected": "cpu_throttle",
+      "trials": 5,
+      "diagnoses_correct": 5,
+      "diagnoses": [
+        "cpu_throttle",
+        "cpu_throttle",
+        "cpu_throttle",
+        "cpu_throttle",
+        "cpu_throttle"
+      ],
+      "latency_median": {
+        "p50": 3.3900175000098898,
+        "p95": 83.41513095000437,
+        "p99": 84.19221430002722
+      },
+      "evidence_median": {
+        "cgroup_nr_throttled": 6,
+        "cgroup_throttled_us": 421380,
+        "schedstat_wait_ratio": 0.004443431533170216
+      },
+      "per_trial": [
+        {
+          "latency": {
+            "count": 40,
+            "p50": 3.3911299999829225,
+            "p95": 83.3055262999892,
+            "p99": 84.31193256003212,
+            "mean": 15.279529424998373,
+            "max": 84.34371600003487,
+            "attempts": 40,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 0.6117312908172607,
+            "cpu_util_ratio": 0.060975609756097615,
+            "softirq_net_rx_delta": 247,
+            "ctxt_delta": 674,
+            "cpu_pressure_some_us": 343876,
+            "io_pressure_some_us": 0,
+            "schedstat_wait_ms": 0.011258,
+            "schedstat_runtime_ms": 1.509737,
+            "cgroup_throttled_us": 549963,
+            "cgroup_nr_throttled": 6,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 0,
+            "tcp_outsegs_delta": 404,
+            "tcp_tw_delta": 44
+          },
+          "diagnosis": "cpu_throttle",
+          "reasons": [
+            "cgroup throttled_usec rose by 549963 us"
+          ]
+        },
+        {
+          "latency": {
+            "count": 40,
+            "p50": 3.369297500000812,
+            "p95": 83.66604004997953,
+            "p99": 83.76879681000958,
+            "mean": 13.819074424998234,
+            "max": 83.8174380000396,
+            "attempts": 40,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 0.553311824798584,
+            "cpu_util_ratio": 0.06756756756756754,
+            "softirq_net_rx_delta": 249,
+            "ctxt_delta": 672,
+            "cpu_pressure_some_us": 176003,
+            "io_pressure_some_us": 29,
+            "schedstat_wait_ms": 0.0062,
+            "schedstat_runtime_ms": 1.395318,
+            "cgroup_throttled_us": 415411,
+            "cgroup_nr_throttled": 6,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 0,
+            "tcp_outsegs_delta": 406,
+            "tcp_tw_delta": 36
+          },
+          "diagnosis": "cpu_throttle",
+          "reasons": [
+            "cgroup throttled_usec rose by 415411 us"
+          ]
+        },
+        {
+          "latency": {
+            "count": 40,
+            "p50": 3.378094499993267,
+            "p95": 83.41513095000437,
+            "p99": 84.19221430002722,
+            "mean": 15.434230299996443,
+            "max": 84.60426100003815,
+            "attempts": 40,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 0.6179897785186768,
+            "cpu_util_ratio": 0.06048387096774188,
+            "softirq_net_rx_delta": 254,
+            "ctxt_delta": 665,
+            "cpu_pressure_some_us": 161584,
+            "io_pressure_some_us": 0,
+            "schedstat_wait_ms": 0.0,
+            "schedstat_runtime_ms": 1.620994,
+            "cgroup_throttled_us": 723128,
+            "cgroup_nr_throttled": 6,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 0,
+            "tcp_outsegs_delta": 409,
+            "tcp_tw_delta": 48
+          },
+          "diagnosis": "cpu_throttle",
+          "reasons": [
+            "cgroup throttled_usec rose by 723128 us"
+          ]
+        },
+        {
+          "latency": {
+            "count": 40,
+            "p50": 3.4207134999917344,
+            "p95": 83.63060890003737,
+            "p99": 84.15807175999475,
+            "mean": 13.721167775005938,
+            "max": 84.40627400000267,
+            "attempts": 40,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 0.5494444370269775,
+            "cpu_util_ratio": 0.0636363636363636,
+            "softirq_net_rx_delta": 250,
+            "ctxt_delta": 705,
+            "cpu_pressure_some_us": 290172,
+            "io_pressure_some_us": 0,
+            "schedstat_wait_ms": 11.413464,
+            "schedstat_runtime_ms": 1.575235,
+            "cgroup_throttled_us": 421380,
+            "cgroup_nr_throttled": 6,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 0,
+            "tcp_outsegs_delta": 408,
+            "tcp_tw_delta": 48
+          },
+          "diagnosis": "cpu_throttle",
+          "reasons": [
+            "cgroup throttled_usec rose by 421380 us"
+          ]
+        },
+        {
+          "latency": {
+            "count": 40,
+            "p50": 3.3900175000098898,
+            "p95": 83.27607960001728,
+            "p99": 84.69904691998579,
+            "mean": 13.397617499995818,
+            "max": 85.58792399998083,
+            "attempts": 40,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 0.536505937576294,
+            "cpu_util_ratio": 0.06542056074766356,
+            "softirq_net_rx_delta": 251,
+            "ctxt_delta": 666,
+            "cpu_pressure_some_us": 174255,
+            "io_pressure_some_us": 46,
+            "schedstat_wait_ms": 0.0,
+            "schedstat_runtime_ms": 1.552809,
+            "cgroup_throttled_us": 398475,
+            "cgroup_nr_throttled": 5,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 0,
+            "tcp_outsegs_delta": 409,
+            "tcp_tw_delta": 35
+          },
+          "diagnosis": "cpu_throttle",
+          "reasons": [
+            "cgroup throttled_usec rose by 398475 us"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "network_delay",
+      "expected": "network_delay",
+      "trials": 5,
+      "diagnoses_correct": 5,
+      "diagnoses": [
+        "network_delay",
+        "network_delay",
+        "network_delay",
+        "network_delay",
+        "network_delay"
+      ],
+      "latency_median": {
+        "p50": 200.00669850000463,
+        "p95": 220.2872683499777,
+        "p99": 224.20515604999707
+      },
+      "evidence_median": {
+        "tcp_retrans_delta": 0,
+        "schedstat_wait_ratio": 0.0
+      },
+      "per_trial": [
+        {
+          "latency": {
+            "count": 50,
+            "p50": 201.34744800000703,
+            "p95": 216.79332210002826,
+            "p99": 221.6044434299971,
+            "mean": 199.89910742000575,
+            "max": 224.19732399998793,
+            "attempts": 50,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 9.99537706375122,
+            "cpu_util_ratio": 0.000500375281461074,
+            "softirq_net_rx_delta": 640,
+            "ctxt_delta": 1574,
+            "cpu_pressure_some_us": 2003,
+            "io_pressure_some_us": 8115,
+            "schedstat_wait_ms": 0.0,
+            "schedstat_runtime_ms": 5.723756,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 0,
+            "tcp_outsegs_delta": 645,
+            "tcp_tw_delta": 8
+          },
+          "diagnosis": "network_delay",
+          "reasons": [
+            "p50 rose by 201.3 ms and p99 by 221.4 ms (uniform shift, no cpu/loss signal)"
+          ]
+        },
+        {
+          "latency": {
+            "count": 50,
+            "p50": 200.00669850000463,
+            "p95": 222.06296480000844,
+            "p99": 224.2067983699627,
+            "mean": 201.32938737999552,
+            "max": 224.31444499994768,
+            "attempts": 50,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 10.066955804824829,
+            "cpu_util_ratio": 0.0007449714427613108,
+            "softirq_net_rx_delta": 638,
+            "ctxt_delta": 1577,
+            "cpu_pressure_some_us": 2516,
+            "io_pressure_some_us": 7979,
+            "schedstat_wait_ms": 0.0,
+            "schedstat_runtime_ms": 5.991375,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 0,
+            "tcp_outsegs_delta": 643,
+            "tcp_tw_delta": 12
+          },
+          "diagnosis": "network_delay",
+          "reasons": [
+            "p50 rose by 200.0 ms and p99 by 224.0 ms (uniform shift, no cpu/loss signal)"
+          ]
+        },
+        {
+          "latency": {
+            "count": 50,
+            "p50": 198.04856050001263,
+            "p95": 218.7186676499948,
+            "p99": 220.89248502999396,
+            "mean": 199.82355561999725,
+            "max": 220.9835529999964,
+            "attempts": 50,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 9.991594314575195,
+            "cpu_util_ratio": 0.002002002002001957,
+            "softirq_net_rx_delta": 648,
+            "ctxt_delta": 1840,
+            "cpu_pressure_some_us": 2467,
+            "io_pressure_some_us": 10285,
+            "schedstat_wait_ms": 0.003865,
+            "schedstat_runtime_ms": 4.903111,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 0,
+            "tcp_outsegs_delta": 646,
+            "tcp_tw_delta": 11
+          },
+          "diagnosis": "network_delay",
+          "reasons": [
+            "p50 rose by 198.0 ms and p99 by 220.7 ms (uniform shift, no cpu/loss signal)"
+          ]
+        },
+        {
+          "latency": {
+            "count": 50,
+            "p50": 199.00770749998742,
+            "p95": 221.93230880002375,
+            "p99": 224.20515604999707,
+            "mean": 200.0159944800032,
+            "max": 225.22462800003495,
+            "attempts": 50,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 10.001240015029907,
+            "cpu_util_ratio": 0.0005002501250624958,
+            "softirq_net_rx_delta": 642,
+            "ctxt_delta": 1692,
+            "cpu_pressure_some_us": 2103,
+            "io_pressure_some_us": 6929,
+            "schedstat_wait_ms": 0.023456,
+            "schedstat_runtime_ms": 4.601175,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 1,
+            "tcp_outsegs_delta": 643,
+            "tcp_tw_delta": 17
+          },
+          "diagnosis": "network_delay",
+          "reasons": [
+            "p50 rose by 199.0 ms and p99 by 224.0 ms (uniform shift, no cpu/loss signal)"
+          ]
+        },
+        {
+          "latency": {
+            "count": 50,
+            "p50": 202.9752814999881,
+            "p95": 220.2872683499777,
+            "p99": 225.10778282997933,
+            "mean": 201.0089304999997,
+            "max": 225.55556099996465,
+            "attempts": 50,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 10.050916910171509,
+            "cpu_util_ratio": 0.0004976362279174307,
+            "softirq_net_rx_delta": 638,
+            "ctxt_delta": 1616,
+            "cpu_pressure_some_us": 2440,
+            "io_pressure_some_us": 213,
+            "schedstat_wait_ms": 0.0,
+            "schedstat_runtime_ms": 4.993221,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 1,
+            "tcp_outsegs_delta": 641,
+            "tcp_tw_delta": -2147
+          },
+          "diagnosis": "network_delay",
+          "reasons": [
+            "p50 rose by 202.9 ms and p99 by 224.9 ms (uniform shift, no cpu/loss signal)"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "network_retransmit",
+      "expected": "network_retransmit",
+      "trials": 5,
+      "diagnoses_correct": 5,
+      "diagnoses": [
+        "network_retransmit",
+        "network_retransmit",
+        "network_retransmit",
+        "network_retransmit",
+        "network_retransmit"
+      ],
+      "latency_median": {
+        "p50": 0.2995284999940395,
+        "p95": 1273.0377814500177,
+        "p99": 3003.153877589987
+      },
+      "evidence_median": {
+        "tcp_retrans_delta": 69,
+        "tcp_outsegs_delta": 444,
+        "schedstat_wait_ratio": 0.10029863659171155
+      },
+      "per_trial": [
+        {
+          "latency": {
+            "count": 40,
+            "p50": 207.42159449997644,
+            "p95": 2598.308432900007,
+            "p99": 3952.221857389998,
+            "mean": 638.4761603999948,
+            "max": 4351.869910999994,
+            "attempts": 40,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 25.539445638656616,
+            "cpu_util_ratio": 9.793360101850723e-05,
+            "softirq_net_rx_delta": 236,
+            "ctxt_delta": 1696,
+            "cpu_pressure_some_us": 3763,
+            "io_pressure_some_us": 14659,
+            "schedstat_wait_ms": 0.40224,
+            "schedstat_runtime_ms": 6.379537,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 69,
+            "tcp_outsegs_delta": 445,
+            "tcp_tw_delta": -11929
+          },
+          "diagnosis": "network_retransmit",
+          "reasons": [
+            "Tcp RetransSegs rose by 69"
+          ]
+        },
+        {
+          "latency": {
+            "count": 40,
+            "p50": 0.2995284999940395,
+            "p95": 1041.0410399500136,
+            "p99": 2392.993589489999,
+            "mean": 332.8947236500028,
+            "max": 3248.09983199998,
+            "attempts": 40,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 13.316193342208862,
+            "cpu_util_ratio": 0.0043208716888972765,
+            "softirq_net_rx_delta": 290,
+            "ctxt_delta": 2367,
+            "cpu_pressure_some_us": 7130,
+            "io_pressure_some_us": 16200,
+            "schedstat_wait_ms": 0.497677,
+            "schedstat_runtime_ms": 4.403498,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 48,
+            "tcp_outsegs_delta": 450,
+            "tcp_tw_delta": -52
+          },
+          "diagnosis": "network_retransmit",
+          "reasons": [
+            "Tcp RetransSegs rose by 48"
+          ]
+        },
+        {
+          "latency": {
+            "count": 40,
+            "p50": 0.33252250000259664,
+            "p95": 3547.5142822000394,
+            "p99": 4020.366402500018,
+            "mean": 606.5049982250059,
+            "max": 4026.7512290000127,
+            "attempts": 40,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 24.26069402694702,
+            "cpu_util_ratio": 0.00010309278350517648,
+            "softirq_net_rx_delta": 249,
+            "ctxt_delta": 1675,
+            "cpu_pressure_some_us": 2386,
+            "io_pressure_some_us": 10984,
+            "schedstat_wait_ms": 0.400823,
+            "schedstat_runtime_ms": 6.51224,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 75,
+            "tcp_outsegs_delta": 444,
+            "tcp_tw_delta": -88
+          },
+          "diagnosis": "network_retransmit",
+          "reasons": [
+            "Tcp RetransSegs rose by 75"
+          ]
+        },
+        {
+          "latency": {
+            "count": 40,
+            "p50": 0.27305299997237853,
+            "p95": 1153.3552455499944,
+            "p99": 3003.153877589987,
+            "mean": 343.9707929249977,
+            "max": 3003.1649219999963,
+            "attempts": 40,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 13.759265661239624,
+            "cpu_util_ratio": 0.00018178512997635288,
+            "softirq_net_rx_delta": 237,
+            "ctxt_delta": 1073,
+            "cpu_pressure_some_us": 422,
+            "io_pressure_some_us": 23,
+            "schedstat_wait_ms": 0.497426,
+            "schedstat_runtime_ms": 4.19537,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 70,
+            "tcp_outsegs_delta": 427,
+            "tcp_tw_delta": 29
+          },
+          "diagnosis": "network_retransmit",
+          "reasons": [
+            "Tcp RetransSegs rose by 70"
+          ]
+        },
+        {
+          "latency": {
+            "count": 40,
+            "p50": 0.2492675000098643,
+            "p95": 1273.0377814500177,
+            "p99": 2633.747545950013,
+            "mean": 325.8001628499997,
+            "max": 3003.1594050000194,
+            "attempts": 40,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 13.032477617263794,
+            "cpu_util_ratio": 0.0001919017463059003,
+            "softirq_net_rx_delta": 244,
+            "ctxt_delta": 1084,
+            "cpu_pressure_some_us": 2598,
+            "io_pressure_some_us": 9276,
+            "schedstat_wait_ms": 0.401582,
+            "schedstat_runtime_ms": 4.003863,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 59,
+            "tcp_outsegs_delta": 430,
+            "tcp_tw_delta": 16
+          },
+          "diagnosis": "network_retransmit",
+          "reasons": [
+            "Tcp RetransSegs rose by 59"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cpu_saturation_cpu_bound",
+      "expected": "cpu_saturation",
+      "trials": 5,
+      "diagnoses_correct": 5,
+      "diagnoses": [
+        "cpu_saturation",
+        "cpu_saturation",
+        "cpu_saturation",
+        "cpu_saturation",
+        "cpu_saturation"
+      ],
+      "latency_median": {
+        "p50": 14.015032000003202,
+        "p95": 17.494559950006305,
+        "p99": 19.92242308002062
+      },
+      "evidence_median": {
+        "cpu_pressure_some_us": 2557825,
+        "schedstat_wait_ms": 34.679139,
+        "schedstat_runtime_ms": 6.082027,
+        "schedstat_wait_ratio": 5.480561224667183
+      },
+      "per_trial": [
+        {
+          "latency": {
+            "count": 180,
+            "p50": 14.032014999997955,
+            "p95": 17.999972550003918,
+            "p99": 20.127395100015523,
+            "mean": 14.2567956500004,
+            "max": 24.01700900003334,
+            "attempts": 180,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 2.5700089931488037,
+            "cpu_util_ratio": 1.0,
+            "softirq_net_rx_delta": 1155,
+            "ctxt_delta": 6063,
+            "cpu_pressure_some_us": 2541119,
+            "io_pressure_some_us": 1,
+            "schedstat_wait_ms": 21.085536,
+            "schedstat_runtime_ms": 5.938071,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 0,
+            "tcp_outsegs_delta": 1858,
+            "tcp_tw_delta": 238
+          },
+          "diagnosis": "cpu_saturation",
+          "reasons": [
+            "server runqueue wait 21 ms vs 6 ms on-CPU (ratio 3.6)",
+            "cpu pressure 'some' total rose by 2541119 us"
+          ]
+        },
+        {
+          "latency": {
+            "count": 180,
+            "p50": 14.015198999999257,
+            "p95": 17.494559950006305,
+            "p99": 19.842363589964407,
+            "mean": 14.200245966664385,
+            "max": 20.246843999984776,
+            "attempts": 180,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 2.5568156242370605,
+            "cpu_util_ratio": 1.0,
+            "softirq_net_rx_delta": 1196,
+            "ctxt_delta": 6115,
+            "cpu_pressure_some_us": 2556747,
+            "io_pressure_some_us": 17975,
+            "schedstat_wait_ms": 31.134227,
+            "schedstat_runtime_ms": 6.082027,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 0,
+            "tcp_outsegs_delta": 1879,
+            "tcp_tw_delta": 260
+          },
+          "diagnosis": "cpu_saturation",
+          "reasons": [
+            "server runqueue wait 31 ms vs 6 ms on-CPU (ratio 5.1)",
+            "cpu pressure 'some' total rose by 2556747 us"
+          ]
+        },
+        {
+          "latency": {
+            "count": 210,
+            "p50": 13.925938999989285,
+            "p95": 17.99038524998764,
+            "p99": 20.474850969997643,
+            "mean": 13.119909676190186,
+            "max": 23.00804800000833,
+            "attempts": 210,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 2.755920648574829,
+            "cpu_util_ratio": 1.0,
+            "softirq_net_rx_delta": 1393,
+            "ctxt_delta": 6818,
+            "cpu_pressure_some_us": 2742270,
+            "io_pressure_some_us": 0,
+            "schedstat_wait_ms": 34.679139,
+            "schedstat_runtime_ms": 6.327662,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 0,
+            "tcp_outsegs_delta": 2199,
+            "tcp_tw_delta": 286
+          },
+          "diagnosis": "cpu_saturation",
+          "reasons": [
+            "server runqueue wait 35 ms vs 6 ms on-CPU (ratio 5.5)",
+            "cpu pressure 'some' total rose by 2742270 us"
+          ]
+        },
+        {
+          "latency": {
+            "count": 180,
+            "p50": 14.015032000003202,
+            "p95": 17.373243600027873,
+            "p99": 18.48707498002568,
+            "mean": 14.206314516667046,
+            "max": 19.420894999996108,
+            "attempts": 180,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 2.55787992477417,
+            "cpu_util_ratio": 1.0,
+            "softirq_net_rx_delta": 1194,
+            "ctxt_delta": 6023,
+            "cpu_pressure_some_us": 2557825,
+            "io_pressure_some_us": 0,
+            "schedstat_wait_ms": 37.381587,
+            "schedstat_runtime_ms": 5.488525,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 0,
+            "tcp_outsegs_delta": 1875,
+            "tcp_tw_delta": 254
+          },
+          "diagnosis": "cpu_saturation",
+          "reasons": [
+            "server runqueue wait 37 ms vs 5 ms on-CPU (ratio 6.8)",
+            "cpu pressure 'some' total rose by 2557825 us"
+          ]
+        },
+        {
+          "latency": {
+            "count": 210,
+            "p50": 13.995987500010187,
+            "p95": 17.101704499987132,
+            "p99": 19.92242308002062,
+            "mean": 13.417619938093951,
+            "max": 22.61185400004706,
+            "attempts": 210,
+            "retries": 0
+          },
+          "features": {
+            "window_s": 2.8185510635375977,
+            "cpu_util_ratio": 1.0,
+            "softirq_net_rx_delta": 1389,
+            "ctxt_delta": 6613,
+            "cpu_pressure_some_us": 2811387,
+            "io_pressure_some_us": 4030,
+            "schedstat_wait_ms": 42.317534,
+            "schedstat_runtime_ms": 6.684868,
+            "cgroup_throttled_us": 0,
+            "cgroup_nr_throttled": 0,
+            "pid_stopped_fraction": 0.0,
+            "tcp_retrans_delta": 0,
+            "tcp_outsegs_delta": 2189,
+            "tcp_tw_delta": 294
+          },
+          "diagnosis": "cpu_saturation",
+          "reasons": [
+            "server runqueue wait 42 ms vs 7 ms on-CPU (ratio 6.3)",
+            "cpu pressure 'some' total rose by 2811387 us"
+          ]
+        }
+      ],
+      "mechanism_note": "busy processes x9 (2x cores + 1) against the CPU-hungry work server, min window 2.5 s; supplementary to the cpu_saturation phase, which uses the default injector against the echo server"
+    }
+  ],
+  "errors": {},
+  "baseline_reference": {
+    "p50": 0.055447499988758864,
+    "p95": 0.12862635000487893,
+    "p99": 0.2286398699953904,
+    "mean": 0.06842755999400651,
+    "count": 50
+  },
+  "baseline_features": {
+    "window_s": 0.0038535594940185547,
+    "cpu_pressure_some_us": 464,
+    "schedstat_wait_ms": 0.001973,
+    "schedstat_runtime_ms": 1.180189
+  },
+  "work_server_unthrottled": {
+    "trials": 3,
+    "latency_median": {
+      "p50": 3.368199999982835,
+      "p95": 3.4785747000256606,
+      "p99": 3.774718100009977
+    }
+  }
+}

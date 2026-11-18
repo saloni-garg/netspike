@@ -1,0 +1,198 @@
+{
+  "machine": {
+    "platform": "Linux-7.0.0-44-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "cpu_count": 4,
+    "affinity_cpus": 4
+  },
+  "server_pid": 7489,
+  "phases": [
+    {
+      "name": "baseline",
+      "expected": "unknown",
+      "latency": {
+        "count": 50,
+        "p50": 0.5091369998808659,
+        "p95": 0.6449295501283814,
+        "p99": 0.7307207099370314,
+        "mean": 0.517115519987783,
+        "max": 0.8011439999791037,
+        "attempts": 50,
+        "retries": 0
+      },
+      "diagnosis": "unknown",
+      "reasons": [
+        "no rule fired: cpu, throttle, loss, io, and uniform-shift signals all below threshold"
+      ],
+      "features": {
+        "window_s": 0.0279996395111084,
+        "cpu_util_ratio": 0.30000000000000004,
+        "softirq_net_rx_delta": 309,
+        "ctxt_delta": 682,
+        "cpu_pressure_some_us": 1022,
+        "io_pressure_some_us": 0,
+        "schedstat_wait_ms": 0.021458,
+        "schedstat_runtime_ms": 9.255037,
+        "pid_stopped_fraction": 0.0,
+        "tcp_retrans_delta": 0,
+        "tcp_outsegs_delta": 501,
+        "tcp_tw_delta": 51
+      }
+    },
+    {
+      "name": "cpu_saturation",
+      "expected": "cpu_saturation",
+      "latency": {
+        "count": 50,
+        "p50": 1.8787419999171107,
+        "p95": 23.352471350040027,
+        "p99": 65.00704070016126,
+        "mean": 5.343714379987432,
+        "max": 67.36789500018858,
+        "attempts": 50,
+        "retries": 0
+      },
+      "diagnosis": "cpu_saturation",
+      "correct": true,
+      "reasons": [
+        "server runqueue wait 27 ms vs 9 ms on-CPU (ratio 3.0)",
+        "cpu pressure 'some' total rose by 232104 us"
+      ],
+      "features": {
+        "window_s": 0.2810063362121582,
+        "cpu_util_ratio": 0.5,
+        "softirq_net_rx_delta": 355,
+        "ctxt_delta": 1593,
+        "cpu_pressure_some_us": 232104,
+        "io_pressure_some_us": 5562,
+        "schedstat_wait_ms": 26.618919,
+        "schedstat_runtime_ms": 8.921504,
+        "pid_stopped_fraction": 0.0,
+        "tcp_retrans_delta": 0,
+        "tcp_outsegs_delta": 500,
+        "tcp_tw_delta": 50
+      }
+    },
+    {
+      "name": "cpu_throttle",
+      "expected": "cpu_throttle",
+      "latency": {
+        "count": 50,
+        "p50": 0.7987679999814645,
+        "p95": 4.344199150045824,
+        "p99": 92.33874091998587,
+        "mean": 4.847217479996289,
+        "max": 93.86077499993917,
+        "attempts": 50,
+        "retries": 0
+      },
+      "diagnosis": "cpu_throttle",
+      "correct": true,
+      "reasons": [
+        "server in stopped (T) state for 82% of state samples"
+      ],
+      "features": {
+        "window_s": 0.24458098411560059,
+        "cpu_util_ratio": 0.6354166666666667,
+        "softirq_net_rx_delta": 585,
+        "ctxt_delta": 3930,
+        "cpu_pressure_some_us": 106389,
+        "io_pressure_some_us": 8312,
+        "schedstat_wait_ms": 21.292535,
+        "schedstat_runtime_ms": 9.179479,
+        "pid_stopped_fraction": 0.825,
+        "tcp_retrans_delta": 0,
+        "tcp_outsegs_delta": 498,
+        "tcp_tw_delta": 49
+      }
+    },
+    {
+      "name": "network_delay",
+      "expected": "network_delay",
+      "latency": {
+        "count": 40,
+        "p50": 46.502038500079834,
+        "p95": 51.84190209999997,
+        "p99": 56.15261233991986,
+        "mean": 47.11019152498466,
+        "max": 58.90312399992581,
+        "attempts": 40,
+        "retries": 0
+      },
+      "diagnosis": "network_delay",
+      "correct": true,
+      "reasons": [
+        "p50 rose by 46.0 ms and p99 by 55.4 ms (uniform shift, no cpu/loss signal)"
+      ],
+      "features": {
+        "window_s": 1.8859949111938477,
+        "cpu_util_ratio": 0.3551401869158879,
+        "softirq_net_rx_delta": 1007,
+        "ctxt_delta": 17097,
+        "cpu_pressure_some_us": 174168,
+        "io_pressure_some_us": 147262,
+        "schedstat_wait_ms": 6.458434,
+        "schedstat_runtime_ms": 10.181799,
+        "pid_stopped_fraction": 0.0,
+        "tcp_retrans_delta": 0,
+        "tcp_outsegs_delta": 801,
+        "tcp_tw_delta": 81,
+        "proxy_dropped_delta": 0,
+        "proxy_delay_ms_total": 1791.5291376930013
+      }
+    },
+    {
+      "name": "network_retransmit",
+      "expected": "network_retransmit",
+      "latency": {
+        "count": 40,
+        "p50": 2.4574060000759346,
+        "p95": 502.39740209991623,
+        "p99": 502.5316439001381,
+        "mean": 170.93567134999716,
+        "max": 502.59751100020367,
+        "attempts": 56,
+        "retries": 16
+      },
+      "diagnosis": "network_retransmit",
+      "correct": true,
+      "reasons": [
+        "27 requests reset without an answer and p99 rose by 502 ms"
+      ],
+      "features": {
+        "window_s": 6.839048624038696,
+        "cpu_util_ratio": 0.3560885608856088,
+        "softirq_net_rx_delta": 1633,
+        "ctxt_delta": 60415,
+        "cpu_pressure_some_us": 725849,
+        "io_pressure_some_us": 225361,
+        "schedstat_wait_ms": 5.541546,
+        "schedstat_runtime_ms": 10.464008,
+        "pid_stopped_fraction": 0.0,
+        "tcp_retrans_delta": 0,
+        "tcp_outsegs_delta": 742,
+        "tcp_tw_delta": 58,
+        "proxy_dropped_delta": 27,
+        "proxy_delay_ms_total": 0.0
+      }
+    }
+  ],
+  "baseline": {
+    "latency": {
+      "count": 50,
+      "p50": 0.5091369998808659,
+      "p95": 0.6449295501283814,
+      "p99": 0.7307207099370314,
+      "mean": 0.517115519987783,
+      "max": 0.8011439999791037,
+      "attempts": 50,
+      "retries": 0
+    },
+    "diagnosis": "unknown"
+  },
+  "accuracy": {
+    "correct": 4,
+    "total": 4,
+    "fraction": 1.0
+  }
+}

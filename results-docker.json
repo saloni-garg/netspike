@@ -1,0 +1,134 @@
+{
+  "available": true,
+  "image": "netspike:latest",
+  "network": "netspike-net",
+  "phases": [
+    {
+      "name": "baseline",
+      "expected": "unknown",
+      "latency": {
+        "count": 38400,
+        "p50": 0.06226599998626625,
+        "p95": 0.08058544997879831,
+        "p99": 0.10388019998345048,
+        "mean": 0.06472241656234168,
+        "max": 4.684350000047743,
+        "attempts": 38400,
+        "retries": 0
+      },
+      "diagnosis": "unknown",
+      "correct": true,
+      "reasons": [
+        "no rule fired: cpu, throttle, loss, io, and uniform-shift signals all below threshold"
+      ],
+      "features": {
+        "window_s": 3.0532896518707275,
+        "cpu_pressure_some_us": 273346,
+        "io_pressure_some_us": 34675,
+        "schedstat_wait_ms": 0.49949,
+        "schedstat_runtime_ms": 0.466221,
+        "cgroup_throttled_us": 0,
+        "cgroup_nr_throttled": 0,
+        "tcp_retrans_delta": 0,
+        "tcp_outsegs_delta": 38400
+      }
+    },
+    {
+      "name": "container_cpu_limit",
+      "expected": "cpu_throttle",
+      "mechanism": "docker run --cpus=0.25, server --work workload",
+      "latency": {
+        "count": 39100,
+        "p50": 0.060974999996687984,
+        "p95": 0.0791834499125343,
+        "p99": 0.10287811000694093,
+        "mean": 0.06360777069066131,
+        "max": 4.705716999978904,
+        "attempts": 39100,
+        "retries": 0
+      },
+      "diagnosis": "cpu_throttle",
+      "correct": true,
+      "reasons": [
+        "cgroup throttled_usec rose by 37007 us"
+      ],
+      "features": {
+        "window_s": 3.0654988288879395,
+        "cpu_pressure_some_us": 309512,
+        "io_pressure_some_us": 32371,
+        "schedstat_wait_ms": 0.102302,
+        "schedstat_runtime_ms": 0.420064,
+        "cgroup_throttled_us": 37007,
+        "cgroup_nr_throttled": 2,
+        "tcp_retrans_delta": 0,
+        "tcp_outsegs_delta": 39100
+      }
+    },
+    {
+      "name": "netem_delay",
+      "expected": "network_delay",
+      "mechanism": "tc qdisc add dev eth0 root netem delay 50ms 10ms (server container)",
+      "latency": {
+        "count": 40,
+        "p50": 51.34551149996014,
+        "p95": 59.67394365003429,
+        "p99": 97.4005937800143,
+        "mean": 52.812994474996344,
+        "max": 121.40595100004248,
+        "attempts": 40,
+        "retries": 0
+      },
+      "diagnosis": "network_delay",
+      "correct": true,
+      "reasons": [
+        "p50 rose by 51.3 ms and p99 by 97.3 ms (uniform shift, no cpu/loss signal)"
+      ],
+      "features": {
+        "window_s": 2.6188039779663086,
+        "cpu_pressure_some_us": 36675,
+        "io_pressure_some_us": 45883,
+        "schedstat_wait_ms": 0.001212,
+        "schedstat_runtime_ms": 0.317727,
+        "cgroup_throttled_us": 0,
+        "cgroup_nr_throttled": 0,
+        "tcp_retrans_delta": 0,
+        "tcp_outsegs_delta": 40
+      }
+    },
+    {
+      "name": "netem_loss",
+      "expected": "network_retransmit",
+      "mechanism": "tc qdisc add dev eth0 root netem loss 15% (server container)",
+      "latency": {
+        "count": 40,
+        "p50": 0.11080549995767797,
+        "p95": 1022.3119885000699,
+        "p99": 1023.7104972100576,
+        "mean": 102.39257077500667,
+        "max": 1023.7359490000699,
+        "attempts": 40,
+        "retries": 0
+      },
+      "diagnosis": "unknown",
+      "correct": false,
+      "reasons": [
+        "no rule fired: cpu, throttle, loss, io, and uniform-shift signals all below threshold"
+      ],
+      "features": {
+        "window_s": 4.627569675445557,
+        "cpu_pressure_some_us": 32354,
+        "io_pressure_some_us": 40162,
+        "schedstat_wait_ms": 0.035914,
+        "schedstat_runtime_ms": 0.523167,
+        "cgroup_throttled_us": 0,
+        "cgroup_nr_throttled": 0,
+        "tcp_retrans_delta": 0,
+        "tcp_outsegs_delta": 44
+      }
+    }
+  ],
+  "accuracy": {
+    "correct": 2,
+    "total": 3
+  }
+}

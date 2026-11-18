@@ -1,0 +1,35 @@
+#!/usr/bin/env bpftrace
+/*
+ * tcp_retransmits.bt -- count TCP retransmits per process.
+ *
+ * Tracepoint: tcp:tcp_retransmit_skb fires in the kernel every
+ * time a segment is retransmitted, in the context of the process
+ * whose socket is retransmitting (or a kernel worker / softirq
+ * context, which shows up under its own comm). This is the eBPF
+ * view of the same ground truth /proc/net/snmp reports in its
+ * RetransSegs counter, except it attributes retransmits to
+ * processes instead of only totalling them system wide.
+ *
+ * Run:  sudo bpftrace tcp_retransmits.bt
+ * Stop with Ctrl-C; the maps and the total print on exit.
+ *
+ * Requirements: Linux with the tcp tracepoints (any modern
+ * kernel), bpftrace, and root or CAP_BPF + CAP_PERFMON.
+ */
+
+BEGIN
+{
+    printf("counting TCP retransmits per process, Ctrl-C to stop\n");
+}
+
+tracepoint:tcp:tcp_retransmit_skb
+{
+    @retransmits[comm] = count();
+    @total = count();
+    @total_int += 1;
+}
+
+END
+{
+    printf("total retransmits: %ld\n", @total_int);
+}
